@@ -1,0 +1,24 @@
+{
+  "name": "voices-mean",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Steven Halase <steven.halase@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "bootstrap": "^3.3.7",
+    "angular-sanitize": "^1.5.8",
+    "slick-carousel": "^1.6.0"
+  }
+}
