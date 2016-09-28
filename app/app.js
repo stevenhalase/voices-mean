@@ -2,32 +2,33 @@ var app = angular.module('voicesApp', ['ngSanitize']);
 
 app.controller('mainCtrl', mainController);
 
-mainController.$inject = ['$scope', '$http'];
+mainController.$inject = ['$scope', '$http', '$sce'];
 
-function mainController($scope, $http) {
-    var mCtrl = this;
+function mainController($scope, $http, $sce) {
+    $scope.title = 'This title';
+    $scope.navOpen = false;
+    $scope.posts = [];
+    $scope.currentPostID = 1;
+    $scope.showCarousel = false;
+    $scope.showVideo = false;
 
-    mCtrl.title = 'This title';
-    mCtrl.navOpen = false;
-    mCtrl.posts = [];
-    mCtrl.currentPostID = 1;
-
-    mCtrl.goTo = function(location) {
+    $scope.goTo = function(location) {
         $state.go(location);
-        mCtrl.navOpen = false;
+        $scope.navOpen = false;
     }
 
-    mCtrl.openNav = function() {
-        if (mCtrl.navOpen) {
-          mCtrl.navOpen = false;
+    $scope.openNav = function() {
+        if ($scope.navOpen) {
+          $scope.navOpen = false;
         } else {
-          mCtrl.navOpen = true;
+          $scope.navOpen = true;
         }
     }
 
 
-    mCtrl.posts = [{
+    $scope.posts = [{
       id : 1,
+      video : 'https://www.youtube.com/embed/Hok_E-RrBIQ?rel=0&amp;showinfo=0',
       images : ['./images/post2/voices2.jpg',
                 './images/post2/voices3.jpg',
                 './images/post2/voices4.jpg',
@@ -46,6 +47,7 @@ function mainController($scope, $http) {
                 `
     },{
       id : 2,
+      video : 'https://www.youtube.com/embed/9XXcPLmGii0?rel=0&amp;showinfo=0',
       images : ['./images/post1/voices1.jpg'],
       title: 'Part One',
       content : `<div>I am going to tell my story after finding a couple journal entries from my time overseas.</div>
@@ -67,13 +69,13 @@ function mainController($scope, $http) {
                 `
     }]
 
-    mCtrl.goTo = function(postID) {
-      mCtrl.currentPostID = postID;
-      mCtrl.navOpen = false;
+    $scope.goTo = function(postID) {
+      $scope.currentPostID = postID;
+      $scope.navOpen = false;
     }
 
-    mCtrl.changeSlide = function(carousel, direction) {
-      var selector = '#' + carousel;
+    $scope.changeSlide = function(carouselID, direction) {
+      var selector = '#carousel-' + carouselID;
       console.log(selector)
       if (direction == 'next') {
         $(selector).carousel('next')
@@ -83,11 +85,29 @@ function mainController($scope, $http) {
       }
     }
 
+    $scope.activateCarousel = function(modalID, type) {
+      $scope.showCarousel = false;
+      $scope.showVideo = false;
+      console.log('activating')
+      var selector = '#modal-' + modalID;
+      console.log(selector);
+      if (type == 'carousel') {
+        $scope.showCarousel = true;
+      } else {
+        $scope.showVideo = true;
+      }
+      $(selector).modal('show');
+    }
+
+    $scope.sanitizeURL = function(url) {
+      return $sce.trustAsResourceUrl(url);
+    }
+
 
     $(document).ready(function(){
-      for (var i = 0; i < mCtrl.posts.length; i++) {
-        var selector = '#' + ((mCtrl.posts[i].id*10) + 1);
-        console.log((mCtrl.posts[i].id*10) + 1)
+      for (var i = 0; i < $scope.posts.length; i++) {
+        var selector = '#carousel-' + ($scope.posts[i].id);
+        // console.log(($scope.posts[i].id*10) + 1)
         $(selector).carousel()
       }
     });
@@ -98,7 +118,7 @@ function mainController($scope, $http) {
         //   console.log(event.target.className)
           if (event.target.className == 'side-nav-backer side-nav-backer--open') {
             // console.log('backer', iCtrl.navOpen)
-            mCtrl.navOpen = false;
+            $scope.navOpen = false;
             $scope.$apply();
           }
         });
