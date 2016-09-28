@@ -29,6 +29,7 @@ function mainController($scope, $http, $sce) {
     $scope.posts = [{
       id : 1,
       video : 'https://www.youtube.com/embed/Hok_E-RrBIQ?rel=0&amp;showinfo=0',
+      audio : 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/284135701&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=false',
       images : ['./images/post2/voices2.jpg',
                 './images/post2/voices3.jpg',
                 './images/post2/voices4.jpg',
@@ -48,6 +49,7 @@ function mainController($scope, $http, $sce) {
     },{
       id : 2,
       video : 'https://www.youtube.com/embed/9XXcPLmGii0?rel=0&amp;showinfo=0',
+      audio: 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/275150973&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=false',
       images : ['./images/post1/voices1.jpg'],
       title: 'Part One',
       content : `<div>I am going to tell my story after finding a couple journal entries from my time overseas.</div>
@@ -88,13 +90,16 @@ function mainController($scope, $http, $sce) {
     $scope.activateCarousel = function(modalID, type) {
       $scope.showCarousel = false;
       $scope.showVideo = false;
+      $scope.showAudio = false;
       console.log('activating')
       var selector = '#modal-' + modalID;
       console.log(selector);
       if (type == 'carousel') {
         $scope.showCarousel = true;
-      } else {
+      } else if (type == 'video') {
         $scope.showVideo = true;
+      } else {
+        $scope.showAudio = true;
       }
       $(selector).modal('show');
     }

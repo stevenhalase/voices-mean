@@ -49,6 +49,7 @@
                       <div class="post-attachments">
                         <button type="button" class="btn-media btn btn-primary" ng-click="activateCarousel(post.id, 'carousel')">Gallery</button>
                         <button type="button" class="btn-media btn btn-primary" ng-click="activateCarousel(post.id, 'video')">Video</button>
+                        <button type="button" class="btn-media btn btn-primary" ng-click="activateCarousel(post.id, 'audio')">Audio</button>
                       </div>
                   	<div class="post-body" ng-bind-html="post.content"></div>
                   </div>
@@ -96,6 +97,10 @@
                     <div class="embed-responsive embed-responsive-16by9">
                       <iframe width="1280" height="720" ng-src="{{sanitizeURL(post.video)}}" frameborder="0" allowfullscreen></iframe>
                     </div>
+                  </div>
+
+                  <div class="audio" ng-show="showAudio">
+                    <iframe width="100%" height="200" scrolling="no" frameborder="no" ng-src="{{sanitizeURL(post.audio)}}"></iframe>
                   </div>
 
 
