@@ -231,6 +231,14 @@ html {
       width: 110vw;
     }
   }
+
+  .last-layer {
+      transform: scale(2);
+
+      img {
+        transform: scale(2);
+      }
+  }
 }
 
 

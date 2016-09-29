@@ -180,6 +180,10 @@ html {
     #main-scene .layer img {
       height: 125vh;
       width: 110vw; }
+  #main-scene .last-layer {
+    transform: scale(2); }
+    #main-scene .last-layer img {
+      transform: scale(2); }
 
 @media (min-width: 768px) {
   .navbar-toggle {
