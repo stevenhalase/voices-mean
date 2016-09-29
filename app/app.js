@@ -110,22 +110,27 @@ function mainController($scope, $http, $sce) {
 
 
     $(document).ready(function(){
-      for (var i = 0; i < $scope.posts.length; i++) {
-        var selector = '#carousel-' + ($scope.posts[i].id);
-        // console.log(($scope.posts[i].id*10) + 1)
-        $(selector).carousel()
-      }
+      
     });
 
 
     $(document).ready(function() {
-        $('html').click(function(event){
-        //   console.log(event.target.className)
-          if (event.target.className == 'side-nav-backer side-nav-backer--open') {
-            // console.log('backer', iCtrl.navOpen)
-            $scope.navOpen = false;
-            $scope.$apply();
-          }
-        });
+
+      for (var i = 0; i < $scope.posts.length; i++) {
+        var selector = '#carousel-' + ($scope.posts[i].id);
+        // console.log(($scope.posts[i].id*10) + 1)
+        $(selector).carousel()
+      };
+
+      $('html').click(function(event){
+      //   console.log(event.target.className)
+        if (event.target.className == 'side-nav-backer side-nav-backer--open') {
+          // console.log('backer', iCtrl.navOpen)
+          $scope.navOpen = false;
+          $scope.$apply();
+        }
+      });
+
+      $('#main-scene').parallax();
     })
 }
