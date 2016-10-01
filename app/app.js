@@ -108,10 +108,12 @@ function mainController($scope, $http, $sce) {
       return $sce.trustAsResourceUrl(url);
     }
 
-
-    $(document).ready(function(){
-      
-    });
+    $scope.closeSplash = function(section) {
+      console.log('closing')
+      var $scene = $('#scene').parallax();
+      $scene.parallax('disable');
+      $('#main-scene').hide();
+    }
 
 
     $(document).ready(function() {

@@ -18,25 +18,51 @@
 
     <div class="app-container" ng-app="voicesApp">
 
-      <div class="splash">
-        <div class="splash-nav">
-          
-        </div>
-        <ul id="main-scene">
-          <li class="layer" data-depth="0.00"><img src="./images/parallax/layer0.png"></li>
-          <li class="layer" data-depth="0.05">
-            <div class="col-xs-12 text-center">
-              <h1 class="splash-title">VOICES OF THE <strong>KORENGAL</strong></h1>
-            </div>
-          </li>
-          <li class="layer" data-depth="0.40"><img src="./images/parallax/layer2.png"></li>
-          <li class="layer last-layer" data-depth="0.99"><img src="./images/parallax/layer1.png"></li>
-          
-      </ul>
-      </div>
+      
       
 
         <div class="controller-container" ng-controller="mainCtrl">
+
+          <div class="splash">
+            <div class="splash-nav">
+              
+            </div>
+            <ul id="main-scene">
+              <li class="layer top-layer" data-depth="0.05">
+                <div class="splash-content col-xs-12 text-center">
+                  <h1 class="splash-title">VOICES OF THE <strong>KORENGAL</strong></h1>
+                  <button class="splash-btn btn btn-default" ng-click="closeSplash('men')">THE <strong>MEN</strong></button>
+                  <button class="splash-btn btn btn-default" ng-click="closeSplash('men')">THE <strong>VALLEY</strong></button>
+
+                  <div class="the-men-wrapper">
+                    <div class="the-men-container col-xs-4" ng-mouseenter="showSubtitle1 = true" ng-mouseleave="showSubtitle1 = false">
+                      <div class="the-men-image-wrapper">
+                        <img class="the-men-image" src="./images/themen/1.jpg" />
+                        <p ng-show="showSubtitle1" class="the-men-subtitle">Mikel Drnec | 3rd PLT</p>
+                      </div>
+                    </div>
+                    <div class="the-men-container col-xs-4" ng-mouseenter="showSubtitle2 = true" ng-mouseleave="showSubtitle2 = false">
+                      <div class="the-men-image-wrapper">
+                        <img class="the-men-image" src="./images/themen/2.jpg" />
+                        <p ng-show="showSubtitle2" class="the-men-subtitle">Robert Soto | 2nd PLT</p>
+                      </div>
+                    </div>
+                    <div class="the-men-container col-xs-4" ng-mouseenter="showSubtitle3 = true" ng-mouseleave="showSubtitle3 = false">
+                      <div class="the-men-image-wrapper">
+                        <img class="the-men-image" src="./images/themen/3.jpg" />
+                        <p ng-show="showSubtitle3" class="the-men-subtitle">John Rodriguez | HQ / 3rd PLT</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="layer" data-depth="0.07"><img class="layer-img-scaled" src="./images/parallax/layer0.png"></li>
+              <li class="layer" data-depth="0.40"><img class="layer-img-scaled" src="./images/parallax/layer2.png"></li>
+              <li class="layer last-layer" data-depth="0.99"><img src="./images/parallax/layer1.png"></li>
+              
+            </ul>
+          </div>
+
             <div class="side-nav" ng-class="{'nav-open': navOpen}">
               <button type="button" class="navbar-toggle" ng-click="openNav()">
                 <span class="icon-bar"></span>
@@ -122,6 +148,16 @@
                     <iframe width="100%" height="200" scrolling="no" frameborder="no" ng-src="{{sanitizeURL(post.audio)}}"></iframe>
                   </div>
 
+
+                </div>
+              </div>
+            </div>
+
+            <div id="the-men" class="modal fade" tabindex="-1" role="dialog">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  
+                  
 
                 </div>
               </div>

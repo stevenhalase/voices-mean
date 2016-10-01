@@ -1,4 +1,4 @@
-$primaryColor : #0000CC;
+$primaryColor : #c0392b;
 $secondaryColor : #FCCA35;
 $backgroundPrimary : #000;
 $backgroundSecondary : #333;
@@ -164,24 +164,24 @@ html {
 
 .btn-media {
   color: white;
-  background-color: #333;
+  background-color: $backgroundSecondary;
   border-radius: 0px;
 
   &:active {
     color: white;
-    background-color: #333;
+    background-color: $backgroundSecondary;
     border-radius: 0px;
   }
 
   &:hover {
     color: white;
-    background-color: #333;
+    background-color: $backgroundSecondary;
     border-radius: 0px;
   }
 
   &:focus {
     color: white;
-    background-color: #333;
+    background-color: $backgroundSecondary;
     border-radius: 0px;
   }
 }
@@ -215,20 +215,98 @@ html {
     height: 125vh;
     width: 110vw;
 
-    .splash-title {
+    .splash-content {
       position: fixed;
-      top: 10%;
+      top: 30%;
       left: 50%;
       transform: translate(-52%,-50%);
-      font-size: 55px;
       width: 100%;
-      text-shadow: 0px 0px 15px rgba(0,0,0,0.3);
-      background-color: rgba(255,255,255,0.6);
+
+      .splash-title {
+        font-size: 55px;
+        text-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+        background-color: rgba(255,255,255,0.6);
+      }
+
+      .splash-btn {
+        margin: 10px 10px 30px 10px;
+        color: white;
+        background-color: $backgroundSecondary;
+        border-radius: 0;
+        padding: 5px 10px;
+        font-size: 20px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $primaryColor;
+        }
+      }
+
+      .the-men-wrapper {
+        margin-top: 25px;
+        width: 75%;
+        height: 200px;
+        margin: 0 auto;
+        -webkit-box-shadow: 0px 0px 80px 2px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 80px 2px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 80px 2px rgba(0,0,0,0.75);
+
+        .the-men-container {
+          height: 100%;
+          padding: 0;
+          overflow: hidden;
+          text-align: center;
+          transform: skewX(-10deg);
+
+          &:hover {
+            border: 5px solid $backgroundPrimary;
+          }
+
+          .the-men-image {
+            height: 150%;
+            width: 150%;
+            transform: skewX(10deg);
+            margin-left: -20px;
+            filter: grayscale(100%);
+            -webkit-filter: grayscale(100%);
+            -webkit-transition: filter .3s ease-in-out;
+            -moz-transition: filter .3s ease-in-out;
+            -o-transition: filter .3s ease-in-out;
+            transition: filter .3s ease-in-out;
+            cursor: pointer;
+
+            &:hover {
+              filter: grayscale(0%);
+              -webkit-filter: grayscale(0%);
+              -webkit-transition: filter .3s ease-in-out;
+              -moz-transition: filter .3s ease-in-out;
+              -o-transition: filter .3s ease-in-out;
+              transition: filter .3s ease-in-out;
+            }
+          }
+
+          .the-men-subtitle {
+            position: absolute;
+            top: 170px;
+            margin-left: 15px;
+            color: white;
+            font-weight: 700;
+            text-align: center;
+          }
+        }
+      }
+      
     }
+
+    
 
     img {
       height: 125vh;
       width: 110vw;
+    }
+
+    .layer-img-scaled {
+      transform: scale(1.1);
     }
   }
 
@@ -239,7 +317,13 @@ html {
         transform: scale(2);
       }
   }
+
+  .top-layer {
+    z-index: 20;
+  }
 }
+
+
 
 
 @media (min-width: 768px) {
