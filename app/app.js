@@ -71,6 +71,43 @@ function mainController($scope, $http, $sce) {
                 `
     }]
 
+    $scope.theMen = [{
+      id: 1,
+      name: 'Mikel Drnec',
+      unit: '3rd Plt, Viper Company',
+      img: './images/themen/drnec.jpg'
+    },{
+      id: 2,
+      name: 'Rob Soto',
+      unit: '2nd Plt, Viper Company',
+      img: './images/themen/soto.jpg'
+    },{
+      id: 3,
+      name: 'John Rodriguez',
+      unit: 'HQ / 3rd Plt, Viper Company',
+      img: './images/themen/rodriguez.jpg'
+    }]
+
+    $scope.showSplashImg = function(id) {
+      for (man of $scope.theMen) {
+        var selector = '#the-men-image-' + man.id;
+        var storySelector = '#read-story-' + man.id;
+        $(selector).hide();
+        $(storySelector).hide();
+      }
+      var selector = '#the-men-image-' + id;
+      var storySelector = '#read-story-' + id;
+      $(selector).show();
+      $(storySelector).show();
+    }
+
+    $scope.hideSplashImg = function(id) {
+      var selector = '#the-men-image-' + id;
+      var storySelector = '#read-story-' + id;
+      $(selector).hide();
+      $(storySelector).hide();
+    }
+
     $scope.goTo = function(postID) {
       $scope.currentPostID = postID;
       $scope.navOpen = false;

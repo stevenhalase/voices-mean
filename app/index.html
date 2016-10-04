@@ -31,27 +31,14 @@
               <li class="layer top-layer" data-depth="0.05">
                 <div class="splash-content col-xs-12 text-center">
                   <h1 class="splash-title">VOICES OF THE <strong>KORENGAL</strong></h1>
-                  <button class="splash-btn btn btn-default" ng-click="closeSplash('men')">THE <strong>MEN</strong></button>
-                  <button class="splash-btn btn btn-default" ng-click="closeSplash('men')">THE <strong>VALLEY</strong></button>
-
                   <div class="the-men-wrapper">
-                    <div class="the-men-container col-xs-4" ng-mouseenter="showSubtitle1 = true" ng-mouseleave="showSubtitle1 = false">
-                      <div class="the-men-image-wrapper">
-                        <img class="the-men-image" src="./images/themen/1.jpg" />
-                        <p ng-show="showSubtitle1" class="the-men-subtitle">Mikel Drnec | 3rd PLT</p>
-                      </div>
-                    </div>
-                    <div class="the-men-container col-xs-4" ng-mouseenter="showSubtitle2 = true" ng-mouseleave="showSubtitle2 = false">
-                      <div class="the-men-image-wrapper">
-                        <img class="the-men-image" src="./images/themen/2.jpg" />
-                        <p ng-show="showSubtitle2" class="the-men-subtitle">Robert Soto | 2nd PLT</p>
-                      </div>
-                    </div>
-                    <div class="the-men-container col-xs-4" ng-mouseenter="showSubtitle3 = true" ng-mouseleave="showSubtitle3 = false">
-                      <div class="the-men-image-wrapper">
-                        <img class="the-men-image" src="./images/themen/3.jpg" />
-                        <p ng-show="showSubtitle3" class="the-men-subtitle">John Rodriguez | HQ / 3rd PLT</p>
-                      </div>
+                    <div class="the-men-container" 
+                      ng-mouseenter="showSplashImg(man.id)"
+                      ng-repeat="man in theMen">
+                      <p class="the-men-name"><strong>{{(man.name).toUpperCase()}}</strong> 
+                      <span id="read-story-{{man.id}}" class="read-story glyphicon glyphicon-chevron-right" style="display:none;"></span>
+                      </p>
+                      <img id="the-men-image-{{man.id}}" class="the-men-image" ng-src="{{man.img}}" style="display:none;">
                     </div>
                   </div>
                 </div>

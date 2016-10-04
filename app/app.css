@@ -177,59 +177,50 @@ html {
       #main-scene .layer .splash-content .splash-title {
         font-size: 55px;
         text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
-        background-color: rgba(255, 255, 255, 0.6); }
+        background-color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 0; }
       #main-scene .layer .splash-content .splash-btn {
-        margin: 10px 10px 30px 10px;
+        margin: 10px 10px 0px 10px;
         color: white;
         background-color: #333;
         border-radius: 0;
         padding: 5px 10px;
         font-size: 20px;
-        cursor: pointer; }
+        cursor: pointer;
+        border: 1px solid white; }
         #main-scene .layer .splash-content .splash-btn:hover {
           background-color: #c0392b; }
       #main-scene .layer .splash-content .the-men-wrapper {
-        margin-top: 25px;
-        width: 75%;
-        height: 200px;
-        margin: 0 auto;
-        -webkit-box-shadow: 0px 0px 80px 2px rgba(0, 0, 0, 0.75);
-        -moz-box-shadow: 0px 0px 80px 2px rgba(0, 0, 0, 0.75);
-        box-shadow: 0px 0px 80px 2px rgba(0, 0, 0, 0.75); }
+        width: 100%;
+        background-color: #333; }
+        #main-scene .layer .splash-content .the-men-wrapper .read-story {
+          background-color: rgba(0, 0, 0, 0.5);
+          color: white;
+          font-weight: 300;
+          padding: 5px;
+          border-radius: 50%;
+          margin-left: 5px;
+          font-size: 10px;
+          vertical-align: text-bottom; }
         #main-scene .layer .splash-content .the-men-wrapper .the-men-container {
-          height: 100%;
-          padding: 0;
-          overflow: hidden;
-          text-align: center;
-          transform: skewX(-10deg); }
+          text-align: left;
+          margin: 0;
+          background-color: #333;
+          display: inline-block; }
           #main-scene .layer .splash-content .the-men-wrapper .the-men-container:hover {
-            border: 5px solid #000; }
+            background-color: #c0392b; }
           #main-scene .layer .splash-content .the-men-wrapper .the-men-container .the-men-image {
-            height: 150%;
-            width: 150%;
-            transform: skewX(10deg);
-            margin-left: -20px;
-            filter: grayscale(100%);
-            -webkit-filter: grayscale(100%);
-            -webkit-transition: filter .3s ease-in-out;
-            -moz-transition: filter .3s ease-in-out;
-            -o-transition: filter .3s ease-in-out;
-            transition: filter .3s ease-in-out;
-            cursor: pointer; }
-            #main-scene .layer .splash-content .the-men-wrapper .the-men-container .the-men-image:hover {
-              filter: grayscale(0%);
-              -webkit-filter: grayscale(0%);
-              -webkit-transition: filter .3s ease-in-out;
-              -moz-transition: filter .3s ease-in-out;
-              -o-transition: filter .3s ease-in-out;
-              transition: filter .3s ease-in-out; }
-          #main-scene .layer .splash-content .the-men-wrapper .the-men-container .the-men-subtitle {
             position: absolute;
-            top: 170px;
-            margin-left: 15px;
+            top: 95%;
+            left: 0;
+            z-index: -1;
+            width: 110vw;
+            height: 70vh; }
+          #main-scene .layer .splash-content .the-men-wrapper .the-men-container .the-men-name {
             color: white;
-            font-weight: 700;
-            text-align: center; }
+            cursor: pointer;
+            display: inline-block;
+            margin: 20px 20px; }
     #main-scene .layer img {
       height: 125vh;
       width: 110vw; }
