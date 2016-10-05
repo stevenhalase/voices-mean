@@ -246,7 +246,7 @@ body {
     font-size: 30px;
     border-radius: 50%;
     position: fixed;
-    top: 10%;
+    top: 15%;
     right: 5%;
     transform: translate(-50%, -50%);
     cursor: pointer; }
