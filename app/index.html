@@ -7,9 +7,10 @@
     <script src="./lib/angular/angular.js" charset="utf-8"></script>
     <script src="./lib/angular-sanitize/angular-sanitize.min.js" charset="utf-8"></script>
     <script src="./lib/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
-    <script src="./lib/jquery.parallax.min.js" charset="utf-8"></script>
+    <!--<script src="./lib/jquery.parallax.min.js" charset="utf-8"></script>-->
     <script src="./app.js" charset="utf-8"></script>
     <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css">
+    <link href="https://file.myfontastic.com/n6vo44Re5QaWo8oCKShBs7/icons.css" rel="stylesheet">
     <link rel="stylesheet" href="./app.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,400i,700">
 
@@ -22,35 +23,7 @@
       
 
         <div class="controller-container" ng-controller="mainCtrl">
-
-          <div class="splash">
-            <div class="splash-nav">
-              
-            </div>
-            <ul id="main-scene">
-              <li class="layer top-layer" data-depth="0.05">
-                <div class="splash-content col-xs-12 text-center">
-                  <h1 class="splash-title">VOICES OF THE <strong>KORENGAL</strong></h1>
-                  <div class="the-men-wrapper">
-                    <div class="the-men-container" 
-                      ng-mouseenter="showSplashImg(man.id)"
-                      ng-repeat="man in theMen">
-                      <p class="the-men-name"><strong>{{(man.name).toUpperCase()}}</strong> 
-                      <span id="read-story-{{man.id}}" class="read-story glyphicon glyphicon-chevron-right" style="display:none;"></span>
-                      </p>
-                      <img id="the-men-image-{{man.id}}" class="the-men-image" ng-src="{{man.img}}" style="display:none;">
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="layer" data-depth="0.07"><img class="layer-img-scaled" src="./images/parallax/layer0.png"></li>
-              <li class="layer" data-depth="0.40"><img class="layer-img-scaled" src="./images/parallax/layer2.png"></li>
-              <li class="layer last-layer" data-depth="0.99"><img src="./images/parallax/layer1.png"></li>
-              
-            </ul>
-          </div>
-
-            <div class="side-nav" ng-class="{'nav-open': navOpen}">
+            <!--<div class="side-nav" ng-class="{'nav-open': navOpen}">
               <button type="button" class="navbar-toggle" ng-click="openNav()">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -66,92 +39,67 @@
                 </div>
               </div>
             </div>
-            <div class="side-nav-backer" ng-class="{'side-nav-backer--open': navOpen}"></div>
+            <div class="side-nav-backer" ng-class="{'side-nav-backer--open': navOpen}"></div>-->
 
-            <div class="content-container container-fluid">
-                <div class="row">
-                  <div class="col-xs-12 text-center">
-                    <h1 class="header-title">VOICES OF THE <strong>KORENGAL</strong></h1>
+
+            <div class="top-content-container container-fluid">
+              <h1 class="header-title">VOICES OF THE <strong>KORENGAL</strong></h1>
+              <div class="the-men-container">
+                <span class="stories-btn"><strong>STORIES</strong></span>
+                <span ng-repeat="man in theMen" 
+                  ng-mouseenter="theMenHover = man" 
+                  ng-mouseleave="theMenHover = false"
+                  ng-click="selectMan(man)">
+                  <p class="the-men-name">
+                    {{man.firstName.toUpperCase()}} <strong>{{man.lastName.toUpperCase()}}</strong>
+                  </p>
+                  <div ng-if="theMenHover == man" class="the-men-details" ng-style="{'background-image': 'url({{man.img}})'}">
+                    <!--<p>View <strong>{{man.lastName}}'s</strong> story</p>-->
                   </div>
-
-                  <div id="{{post.id}}" class="post-container col-xs-10 col-xs-offset-1"
-                    ng-class="{'display-post': post.id == currentPostID}"
-                    ng-repeat="post in posts track by $index">
-                      <h1 class="post-title">{{post.title.toUpperCase()}}</h1>
-                      <div class="post-attachments">
-                        <button type="button" class="btn-media btn btn-primary" ng-click="activateCarousel(post.id, 'carousel')">Gallery</button>
-                        <button type="button" class="btn-media btn btn-primary" ng-click="activateCarousel(post.id, 'video')">Video</button>
-                        <button type="button" class="btn-media btn btn-primary" ng-click="activateCarousel(post.id, 'audio')">Audio</button>
-                      </div>
-                  	<div class="post-body" ng-bind-html="post.content"></div>
-                  </div>
-                </div>
-            </div>
-
-            <div id="modal-{{post.id}}" class="modal fade" tabindex="-1" role="dialog" ng-repeat="post in posts track by $index">
-              <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-
-
-                  <div id="carousel-{{post.id}}" class="carousel slide"
-                    data-ride="carousel"
-                    ng-show="showCarousel">
-                    <!-- Indicators -->
-                    <!-- <ol class="carousel-indicators">
-                      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                    </ol> -->
-
-
-                    <div class="carousel-inner" role="listbox">
-                      <div class="item" ng-class="{'active': $index == 0}" ng-repeat="image in post.images">
-                        <img ng-src="{{image}}">
-                        <div class="carousel-caption">
-                          ...
-                        </div>
-                      </div>
-                      ...
-                    </div>
-
-                    <!-- Controls -->
-                    <a class="left carousel-control" href="#carousel-example-generic" role="button" ng-click="changeSlide(post.id,'prev')">
-                      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="right carousel-control" href="#carousel-example-generic" role="button" ng-click="changeSlide(post.id,'next')">
-                      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                      <span class="sr-only">Next</span>
-                    </a>
-                  </div>
-
-                  <div class="video" ng-show="showVideo">
-                    <div class="embed-responsive embed-responsive-16by9">
-                      <iframe width="1280" height="720" ng-src="{{sanitizeURL(post.video)}}" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                  </div>
-
-                  <div class="audio" ng-show="showAudio">
-                    <iframe width="100%" height="200" scrolling="no" frameborder="no" ng-src="{{sanitizeURL(post.audio)}}"></iframe>
-                  </div>
-
-
-                </div>
+                </span>
               </div>
             </div>
 
-            <div id="the-men" class="modal fade" tabindex="-1" role="dialog">
-              <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
+            <div ng-if="theMenSelected == man" class="stories-content-container container-fluid" ng-repeat="man in theMen">
+              <div class="stories-sidebar">
+                <img class="story-sidebar-image" ng-src="{{man.img}}">
+                <p>{{man.firstName.toUpperCase()}} <strong>{{man.lastName.toUpperCase()}}</strong></span></p>
+                  <p class="story-sidebar-title"
+                    ng-class="{bold: selectedStory == story }" 
+                    ng-repeat="story in man.stories"
+                    ng-click="selectStory(story)">
+                    {{story.title}} <span class="glyphicon glyphicon-chevron-right" ng-if="selectedStory == story"></span>
+                  </p>
+                  <span ng-repeat="story in man.stories">
+                    <img class="story-sidebar-gallery-image" 
+                    ng-if="selectedStory == story" 
+                    ng-src="{{image}}" 
+                    ng-click="openGallery(image,story)"
+                    ng-repeat="image in story.images">
+                  </span>
                   
-                  
-
-                </div>
+              </div>
+              <div class="story-container">
+                <h2 class="story-title"><strong>{{selectedStory.title}}</strong></h2>
+                <div class="story-wrapper" ng-bind-html="selectedStory.content"></div>
               </div>
             </div>
 
-
+            <div class="gallery-wrapper" ng-if="selectedGalleryImage != false">
+              <div class="gallery-backer"></div>
+              <div class="gallery-content">
+                <img class="gallery-image" ng-src="{{selectedGalleryImage}}">
+                <span class="close-gallery-btn glyphicon glyphicon-remove" ng-click="closeGallery()"></span>
+              </div>
+            </div>
             <div class="footer-container">
+              <div class="footer-content">
+                <div class="social-container">
+                  <p><a href="https://www.facebook.com/voicesofthekorengal/" target="_blank"><span class="socicon-facebook"></span></a> <a href="mailto:drnecm2@unlv.nevada.edu"><span class="socicon-mail"></span></a></p>
+                </div>
+                <p>&#169 2016 Voices of The Korengal</p>
+                <p>Powered by <a href="http://www.halasedesign.net" target="_blank" >Steven Halase</a></p>
+              </div>
             </div>
         </div>
     </div>
