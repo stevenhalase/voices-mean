@@ -1,0 +1,23 @@
+@import '../_colors';
+
+.admin-content-container {
+    margin-top: 50px;
+}
+
+trix-editor {
+    max-height: 500px;
+    overflow: scroll;
+}
+
+.admin-men-btn {
+    background-color: white;
+    color: $backgroundSecondary;
+    border: 1px solid $backgroundSecondary;
+    margin-bottom: 10px;
+
+    &:hover,&:link,&:visited,&:active,&:focus {
+        border: 1px solid $backgroundSecondary;
+        background-color: white!important;
+        color: $backgroundSecondary!important;
+    }
+}

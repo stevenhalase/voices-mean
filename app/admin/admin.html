@@ -1,0 +1,32 @@
+<div class="admin-content-container container">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">POSTS</h3>
+            </div>
+            <div class="panel-body">
+                <div class="list-group" id="men-admin-list">
+                    <a href="" class="list-group-item" ng-repeat="man in theMen">
+                        <button class="admin-men-btn btn btn-primary" type="button" data-toggle="collapse" 
+                        data-target="#men-content-{{man.lastName}}" 
+                        aria-expanded="false" 
+                        aria-controls="#men-content-{{man.lastName}}"
+                        data-parent="#men-admin-list">
+                            <h4 class="list-group-item-heading">{{man.firstName.toUpperCase()}} <strong>{{man.lastName.toUpperCase()}}</strong></h4>
+                        </button>
+                        <div class="collapse" id="men-content-{{man.lastName}}">
+                            <div class="list-group-item-text">
+                                <div class="panel panel-default" ng-repeat="story in man.stories">
+                                    <div class="panel-heading"><h3 editable-text="story.title">{{ story.title || 'empty' }}</h3></div>
+                                    <div class="panel-body">
+                                        <trix-editor angular-trix ng-model="story.content"></trix-editor>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -5,13 +5,24 @@
     <title>Voices of the Korengal</title>
     <script src="./lib/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="./lib/angular/angular.js" charset="utf-8"></script>
+    <script src="./lib/angular-ui-router/release/angular-ui-router.min.js" charset="utf-8"></script>
     <script src="./lib/angular-sanitize/angular-sanitize.min.js" charset="utf-8"></script>
+    <script src="./lib/angular-xeditable/dist/js/xeditable.js" charset="utf-8"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/trix/0.9.2/trix.js"></script>
+    <script src="./lib/angular-trix/dist/angular-trix.min.js"></script>
     <script src="./lib/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
     <!--<script src="./lib/jquery.parallax.min.js" charset="utf-8"></script>-->
     <script src="./app.js" charset="utf-8"></script>
+    <script src="./home/home-controller.js" charset="utf-8"></script>
+    <script src="./admin/admin-controller.js" charset="utf-8"></script>
+    <script src="./factories/data-factory.js" charset="utf-8"></script>
     <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./lib/angular-xeditable/dist/css/xeditable.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/trix/0.9.2/trix.css">
     <link href="https://file.myfontastic.com/n6vo44Re5QaWo8oCKShBs7/icons.css" rel="stylesheet">
     <link rel="stylesheet" href="./app.css">
+    <link rel="stylesheet" href="./home/home.css">
+    <link rel="stylesheet" href="./admin/admin.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,400i,700">
 
   </head>
@@ -23,66 +34,19 @@
       
 
         <div class="controller-container" ng-controller="mainCtrl">
+          <div class="social-container">
+            <p><a href="https://www.facebook.com/voicesofthekorengal/" target="_blank"><span class="socicon-facebook"></span></a> <a href="mailto:drnecm2@unlv.nevada.edu"><span class="socicon-mail"></span></a></p>
+          </div>
 
-            <div class="top-content-container container-fluid">
-              <h1 class="header-title">VOICES OF THE <strong>KORENGAL</strong></h1>
-              <div class="the-men-container">
-                <span class="stories-btn"><strong>STORIES</strong></span>
-                <span ng-repeat="man in theMen" 
-                  ng-mouseenter="theMenHover = man" 
-                  ng-mouseleave="theMenHover = false"
-                  ng-click="selectMan(man)">
-                  <p class="the-men-name">
-                    {{man.firstName.toUpperCase()}} <strong>{{man.lastName.toUpperCase()}}</strong>
-                  </p>
-                  <div ng-if="theMenHover == man" class="the-men-details" ng-style="{'background-image': 'url({{man.img}})'}">
-                    <!--<p>View <strong>{{man.lastName}}'s</strong> story</p>-->
-                  </div>
-                </span>
-              </div>
-            </div>
+          <ui-view></ui-view>
+            
+        </div>
 
-            <div ng-if="theMenSelected == man" class="stories-content-container container-fluid" ng-repeat="man in theMen">
-              <div class="stories-sidebar">
-                <img class="story-sidebar-image" ng-src="{{man.img}}">
-                <p>{{man.firstName.toUpperCase()}} <strong>{{man.lastName.toUpperCase()}}</strong></span></p>
-                  <p class="story-sidebar-title"
-                    ng-class="{bold: selectedStory == story }" 
-                    ng-repeat="story in man.stories"
-                    ng-click="selectStory(story)">
-                    {{story.title}} <span class="glyphicon glyphicon-chevron-right" ng-if="selectedStory == story"></span>
-                  </p>
-                  <span ng-repeat="story in man.stories">
-                    <img class="story-sidebar-gallery-image" 
-                    ng-if="selectedStory == story" 
-                    ng-src="{{image}}" 
-                    ng-click="openGallery(image,story)"
-                    ng-repeat="image in story.images">
-                  </span>
-                  
-              </div>
-              <div class="story-container">
-                <h2 class="story-title"><strong>{{selectedStory.title}}</strong></h2>
-                <div class="story-wrapper" ng-bind-html="selectedStory.content"></div>
-              </div>
-            </div>
-
-            <div class="gallery-wrapper" ng-if="selectedGalleryImage != false">
-              <div class="gallery-backer"></div>
-              <div class="gallery-content">
-                <img class="gallery-image" ng-src="{{selectedGalleryImage}}">
-                <span class="close-gallery-btn glyphicon glyphicon-remove" ng-click="closeGallery()"></span>
-              </div>
-            </div>
-            <div class="footer-container">
-              <div class="footer-content">
-                <div class="social-container">
-                  <p><a href="https://www.facebook.com/voicesofthekorengal/" target="_blank"><span class="socicon-facebook"></span></a> <a href="mailto:drnecm2@unlv.nevada.edu"><span class="socicon-mail"></span></a></p>
-                </div>
-                <p>&#169 2016 Voices of The Korengal</p>
-                <p>Powered by <a href="http://www.halasedesign.net" target="_blank" >Steven Halase</a></p>
-              </div>
-            </div>
+        <div class="footer-container">
+          <div class="footer-content">
+            <p>&#169 2016 Voices of The Korengal</p>
+            <p>Powered by <a href="http://www.halasedesign.net" target="_blank" >Steven Halase</a></p>
+          </div>
         </div>
     </div>
 

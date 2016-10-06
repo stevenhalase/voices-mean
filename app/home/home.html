@@ -1,0 +1,50 @@
+<div class="top-content-container container-fluid">
+    <h1 class="header-title">VOICES OF THE <strong>KORENGAL</strong></h1>
+    <div class="the-men-container">
+    <span class="stories-btn"><strong>STORIES</strong></span>
+    <span ng-repeat="man in theMen" 
+        ng-mouseenter="theMenHover = man" 
+        ng-mouseleave="theMenHover = false"
+        ng-click="selectMan(man)">
+        <p class="the-men-name">
+        {{man.firstName.toUpperCase()}} <strong>{{man.lastName.toUpperCase()}}</strong>
+        </p>
+        <div ng-if="theMenHover == man" class="the-men-details" ng-style="{'background-image': 'url({{man.img}})'}">
+        <!--<p>View <strong>{{man.lastName}}'s</strong> story</p>-->
+        </div>
+    </span>
+    </div>
+</div>
+
+<div ng-if="theMenSelected == man" class="stories-content-container container-fluid" ng-repeat="man in theMen">
+    <div class="stories-sidebar">
+    <img class="story-sidebar-image" ng-src="{{man.img}}">
+    <p>{{man.firstName.toUpperCase()}} <strong>{{man.lastName.toUpperCase()}}</strong></span></p>
+        <p class="story-sidebar-title"
+        ng-class="{bold: selectedStory == story }" 
+        ng-repeat="story in man.stories"
+        ng-click="selectStory(story)">
+        {{story.title}} <span class="glyphicon glyphicon-chevron-right" ng-if="selectedStory == story"></span>
+        </p>
+        <span ng-repeat="story in man.stories">
+        <img class="story-sidebar-gallery-image" 
+        ng-if="selectedStory == story" 
+        ng-src="{{image}}" 
+        ng-click="openGallery(image,story)"
+        ng-repeat="image in story.images">
+        </span>
+        
+    </div>
+    <div class="story-container">
+    <h2 class="story-title"><strong>{{selectedStory.title}}</strong></h2>
+    <div class="story-wrapper" ng-bind-html="selectedStory.content"></div>
+    </div>
+</div>
+
+<div class="gallery-wrapper" ng-if="selectedGalleryImage != false">
+    <div class="gallery-backer"></div>
+    <div class="gallery-content">
+    <img class="gallery-image" ng-src="{{selectedGalleryImage}}">
+    <span class="close-gallery-btn glyphicon glyphicon-remove" ng-click="closeGallery()"></span>
+    </div>
+</div>
