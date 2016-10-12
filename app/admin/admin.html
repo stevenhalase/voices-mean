@@ -1,11 +1,13 @@
-<div class="alert alert-success" ng-show="showSuccessAlert" role="alert"><p>Story Successfully Updated</p></div>
+<div class="alert alert-success" ng-show="showSuccessAlert" role="alert"><p>{{alertMessage}}</p></div>
 <div class="admin-content-container container">
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">POSTS</h3>
+                <h3 class="header-panel-title panel-title">POSTS</h3>
+                <button class="save-changes-btn btn btn-success" ng-click="saveChanges()">Save Changes</button>
             </div>
             <div class="panel-body">
+              <button class="add-story-btn btn btn-success" ng-click="addMan()">Add Man</button>
                 <div class="list-group">
                     <a href="" class="list-group-item"
                       ng-class="{active: man == selectedMan}"
@@ -16,9 +18,23 @@
                         ng-click="deleteMan(man)"
                         ng-show="man == selectedMan">Delete</button>
                     </a>
-                    <button class="add-story-btn btn btn-success" ng-click="addMan()">Add Man</button>
                 </div>
 
+                <div class="well">
+                  <h3>Personnel Info</h3>
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <p editable-text="selectedMan.firstName">{{ selectedMan.firstName || 'empty' }}</p>
+                      <p editable-text="selectedMan.unit">{{ selectedMan.unit || 'empty' }}</p>
+                    </div>
+                    <div class="col-xs-6">
+                      <p editable-text="selectedMan.lastName">{{ selectedMan.lastName || 'empty' }}</p>
+                    </div>
+                  </div>
+
+                </div>
+
+                <button class="add-story-btn btn btn-success" ng-click="addStory()">Add Story</button>
                 <div class="list-group">
                   <a href="" class="list-group-item"
                     ng-class="{active: story == selectedStory}"
@@ -26,13 +42,12 @@
                     ng-repeat="story in selectedMan.stories">
                     {{story.title}}
                   </a>
-                  <button class="add-story-btn btn btn-success" ng-click="addStory()">Add Story</button>
+
                 </div>
 
-                <div class="well">
+                <div class="well" ng-show="selectedMan.stories.length != 0">
 
                   <div class="list-group-item-text">
-                    <button class="save-changes-btn btn btn-success" ng-click="saveMan()">Save Changes</button>
                     <div class="men-story-panel panel panel-default">
                       <div class="panel-heading">
                         <h3 editable-text="selectedStory.title">{{ selectedStory.title || 'empty' }}</h3>

@@ -119,12 +119,19 @@ trix-editor {
   }
 }
 
+.header-panel-title {
+  display: inline-block;
+  padding: 10px;
+}
+
 .save-changes-btn {
-  margin-bottom: 10px;
+  float: right;
+  display: inline-block;
 }
 
 .add-story-btn {
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .admin-men-btn {

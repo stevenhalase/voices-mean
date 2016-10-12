@@ -36,6 +36,7 @@ function adminController($scope, DataFactory, Upload, $window, $timeout) {
           $scope.selectedMan = $scope.theMen[$scope.theMen.length - 1];
           $scope.selectedStory = $scope.selectedMan.stories[0];
 
+          $scope.alertMessage = 'Successfully Added Profile';
           $scope.showSuccessAlert = true;
 
           $timeout(function() {
@@ -56,6 +57,7 @@ function adminController($scope, DataFactory, Upload, $window, $timeout) {
           $scope.selectedMan = $scope.theMen[0];
           $scope.selectedStory = $scope.selectedMan.stories[0];
 
+          $scope.alertMessage = 'Successfully Removed Profile';
           $scope.showSuccessAlert = true;
 
           $timeout(function() {
@@ -77,17 +79,28 @@ function adminController($scope, DataFactory, Upload, $window, $timeout) {
       $scope.selectedMan.stories.push(newStory);
       console.log($scope.selectedMan.stories[$scope.selectedMan.stories.length - 1])
       $scope.selectedStory = $scope.selectedMan.stories[$scope.selectedMan.stories.length - 1];
+
+      $scope.alertMessage = 'Successfully Added Story';
       $scope.saveMan();
     }
 
     $scope.deleteStory = function(story) {
       $scope.selectedMan.stories.splice($scope.selectedMan.stories.indexOf(story),1);
       $scope.selectedStory = $scope.selectedMan.stories[0];
+
+      $scope.alertMessage = 'Successfully Deleted Story';
       $scope.saveMan();
     }
 
     $scope.removeImage = function(image, story) {
       story.images.splice(story.images.indexOf(image), 1);
+
+      $scope.alertMessage = 'Successfully Removed Image';
+      $scope.saveMan();
+    }
+
+    $scope.saveChanges = function() {
+      $scope.alertMessage = 'Successfully Saved Changes';
       $scope.saveMan();
     }
 
@@ -114,6 +127,7 @@ function adminController($scope, DataFactory, Upload, $window, $timeout) {
 
     $scope.addImageToStory = function(fileName) {
       $scope.selectedStory.images.push('./images/uploads/file-upload-' + fileName);
+      $scope.alertMessage = 'Successfully Added Image';
       $scope.saveMan();
       $scope.progress = 0;
       $scope.file = {};
