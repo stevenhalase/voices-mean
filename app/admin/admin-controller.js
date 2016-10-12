@@ -166,7 +166,7 @@ function adminController($scope, DataFactory, Upload, $window, $timeout) {
                 $window.alert('an error occured');
             }
         }, function (resp) { //catch error
-            console.log('Error status: ' + resp.status);
+            console.log('Error status: ' + resp.err_desc);
             $window.alert('Error status: ' + resp.status);
         }, function (evt) {
             console.log(evt);
