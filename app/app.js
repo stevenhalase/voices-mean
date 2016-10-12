@@ -1,4 +1,4 @@
-var app = angular.module('voicesApp', ['ui.router', 'ngSanitize', 'xeditable', 'angularTrix']);
+var app = angular.module('voicesApp', ['ui.router', 'ngSanitize', 'xeditable', 'angularTrix', 'ngFileUpload']);
 
 app.run(function(editableOptions) {
   editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
@@ -44,7 +44,7 @@ function mainController($scope, $http, $sce) {
         }
     }
 
-    
+
 
     $scope.changeSlide = function(carouselID, direction) {
       var selector = '#carousel-' + carouselID;
@@ -98,5 +98,5 @@ function mainController($scope, $http, $sce) {
 
     })
 
-    
+
 }

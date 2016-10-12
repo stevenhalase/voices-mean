@@ -1,9 +1,92 @@
 .admin-content-container {
   margin-top: 50px; }
+  .admin-content-container .delete-btn {
+    float: right;
+    padding: 0px 5px; }
+
+.alert {
+  border-radius: 0;
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  text-align: center;
+  z-index: 1000; }
 
 trix-editor {
   max-height: 500px;
   overflow: scroll; }
+
+.men-story-panel .panel-heading h3, .men-story-panel .panel-heading button {
+  display: inline-block; }
+.men-story-panel .panel-heading button {
+  float: right;
+  margin-top: 15px; }
+.men-story-panel .image-upload-wrapper {
+  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+  padding: 10px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: 0;
+  -webkit-box-shadow: 0; }
+  .men-story-panel .image-upload-wrapper .panel-body {
+    border: 0;
+    border-radius: 0;
+    -webkit-box-shadow: 0;
+    box-shadow: 0; }
+  .men-story-panel .image-upload-wrapper form {
+    width: 50%;
+    margin: 0 auto;
+    padding: 10px; }
+    .men-story-panel .image-upload-wrapper form * {
+      margin: 5px; }
+  .men-story-panel .image-upload-wrapper .image-upload-progress {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 10px; }
+.men-story-panel .admin-story-images {
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center; }
+  .men-story-panel .admin-story-images .story-image-wrapper {
+    width: 75px;
+    height: 75px;
+    margin: 10px; }
+    .men-story-panel .admin-story-images .story-image-wrapper img {
+      width: 75px;
+      height: 75px;
+      border-radius: 10px; }
+    .men-story-panel .admin-story-images .story-image-wrapper .story-image-overlay {
+      width: 75px;
+      height: 75px;
+      position: relative;
+      top: -75px;
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
+      cursor: pointer; }
+      .men-story-panel .admin-story-images .story-image-wrapper .story-image-overlay span {
+        color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 20px;
+        background-color: #c0392b;
+        border-radius: 50%;
+        padding: 7px;
+        height: 40px;
+        width: 40px;
+        text-align: center; }
+
+.save-changes-btn {
+  margin-bottom: 10px; }
+
+.add-story-btn {
+  margin-top: 10px; }
 
 .admin-men-btn {
   background-color: white;

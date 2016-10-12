@@ -10,7 +10,10 @@ function homeController($scope, $http, $sce, DataFactory) {
     $scope.galleryStory = false;
 
     $scope.posts = DataFactory.posts;
-    $scope.theMen = DataFactory.theMen;
+    
+    DataFactory.getMenProfiles().then(function(response) {
+      $scope.theMen = response.data;
+    })
 
     $scope.selectMan = function(man) {
       // console.log(man);

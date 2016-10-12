@@ -1,3 +1,4 @@
+<div class="alert alert-success" ng-show="showSuccessAlert" role="alert"><p>Story Successfully Updated</p></div>
 <div class="admin-content-container container">
     <div class="row">
         <div class="panel panel-default">
@@ -5,27 +6,88 @@
                 <h3 class="panel-title">POSTS</h3>
             </div>
             <div class="panel-body">
-                <div class="list-group" id="men-admin-list">
-                    <a href="" class="list-group-item" ng-repeat="man in theMen">
-                        <button class="admin-men-btn btn btn-primary" type="button" data-toggle="collapse" 
-                        data-target="#men-content-{{man.lastName}}" 
-                        aria-expanded="false" 
-                        aria-controls="#men-content-{{man.lastName}}"
-                        data-parent="#men-admin-list">
-                            <h4 class="list-group-item-heading">{{man.firstName.toUpperCase()}} <strong>{{man.lastName.toUpperCase()}}</strong></h4>
-                        </button>
-                        <div class="collapse" id="men-content-{{man.lastName}}">
-                            <div class="list-group-item-text">
-                                <div class="panel panel-default" ng-repeat="story in man.stories">
-                                    <div class="panel-heading"><h3 editable-text="story.title">{{ story.title || 'empty' }}</h3></div>
-                                    <div class="panel-body">
-                                        <trix-editor angular-trix ng-model="story.content"></trix-editor>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="list-group">
+                    <a href="" class="list-group-item"
+                      ng-class="{active: man == selectedMan}"
+                      ng-click="selectMan(man)"
+                      ng-repeat="man in theMen track by $index">
+                      {{man.lastName}}
+                      <button class="delete-btn btn btn-danger"
+                        ng-click="deleteMan(man)"
+                        ng-show="man == selectedMan">Delete</button>
                     </a>
+                    <button class="add-story-btn btn btn-success" ng-click="addMan()">Add Man</button>
                 </div>
+
+                <div class="list-group">
+                  <a href="" class="list-group-item"
+                    ng-class="{active: story == selectedStory}"
+                    ng-click="selectStory(story)"
+                    ng-repeat="story in selectedMan.stories">
+                    {{story.title}}
+                  </a>
+                  <button class="add-story-btn btn btn-success" ng-click="addStory()">Add Story</button>
+                </div>
+
+                <div class="well">
+
+                  <div class="list-group-item-text">
+                    <button class="save-changes-btn btn btn-success" ng-click="saveMan()">Save Changes</button>
+                    <div class="men-story-panel panel panel-default">
+                      <div class="panel-heading">
+                        <h3 editable-text="selectedStory.title">{{ selectedStory.title || 'empty' }}</h3>
+                        <button class="btn btn-danger" ng-click="deleteStory(selectedStory)">Delete Story</button>
+                      </div>
+                      <div class="panel-body">
+                        <trix-editor angular-trix ng-model="selectedStory.content"></trix-editor>
+                      </div>
+                      <div class="admin-story-images">
+                        <div class="story-image-wrapper"
+                          ng-mouseenter="showOverlay=true"
+                          ng-mouseleave="showOverlay=false"
+                          ng-click="removeImage(image, selectedStory)"
+                          ng-repeat="image in selectedStory.images">
+                          <img ng-src="{{image}}">
+                          <div class="story-image-overlay" ng-show="showOverlay"><span>X</span></div>
+                        </div>
+                      </div>
+                      <div class="image-upload-wrapper panel panel-default">
+                        <div class="panel-heading">
+                          <h5 class="panel-title">Image Upload</h5>
+                        </div>
+                        <div class="panel-body well">
+                          <form name="upload_form">
+                              <input
+                                  type="file"
+                                  ngf-select
+                                  ng-model="file"
+                                  name="file"
+                                  ngf-pattern="'image/*'"
+                                  accept="image/*"
+                                  ngf-max-size="20MB"
+                                  />
+                              <img style="width:100px;" ng-show="!!file" ngf-thumbnail="file || '../images/placeholder.png'"/>
+                              <i ng-show="upload_form.file.$error.required">*required</i><br>
+                              <i ng-show="upload_form.file.$error.maxSize">File too large
+                              {{file.size / 1000000|number:1}}MB: max 20M</i>
+                             <!--  Multiple files
+                              <div class="button" ngf-select ng-model="up.files" ngf-multiple="true">Select</div>
+                              Drop files: <div ngf-drop ng-model="up.files" class="drop-box">Drop</div> -->
+                              <button class="btn btn-success" type="submit" ng-click="submit()">Submit</button>
+                              <div class="image-upload-progress progress" ng-show="progress != 0 && progress">
+                                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%">
+                                  <span class="sr-only">{{progress}}% Complete</span>
+                                </div>
+                              </div>
+                          </form>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
             </div>
         </div>
     </div>
